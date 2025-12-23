@@ -1,0 +1,8 @@
+export { default as Hero } from './Hero.js'
+export { default as Features } from './Features.js'
+export { default as Process } from './Process.js'
+export { default as Benefits } from './Benefits.js'
+export { default as Testimonials } from './Testimonials.js'
+export { default as Pricing } from './Pricing.js'
+export { default as Cta } from './Cta.js'
+export { default as About } from './About.js'
