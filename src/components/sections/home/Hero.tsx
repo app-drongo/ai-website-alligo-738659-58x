@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Play, Sparkles, Code, Palette, Zap, Globe, Rocket } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Code, Palette } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useSmartNavigation } from '@/hooks/useSmartNavigation';
@@ -68,121 +68,94 @@ export default function Hero(props: HeroProps) {
   };
 
   return (
-    <section id="hero" className="relative bg-background text-foreground py-20 lg:py-32 overflow-hidden">
-      {/* Background Motifs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5"></div>
-        
-        {/* Floating Icons */}
-        <div className="absolute top-20 left-10 opacity-20 animate-pulse">
-          <Code className="w-12 h-12 text-primary" />
-        </div>
-        <div className="absolute top-32 right-16 opacity-15 animate-pulse delay-1000">
-          <Palette className="w-16 h-16 text-accent" />
-        </div>
-        <div className="absolute bottom-32 left-20 opacity-20 animate-pulse delay-500">
-          <Zap className="w-10 h-10 text-primary" />
-        </div>
-        <div className="absolute bottom-20 right-12 opacity-15 animate-pulse delay-1500">
-          <Globe className="w-14 h-14 text-accent" />
-        </div>
-        <div className="absolute top-1/2 left-8 opacity-10 animate-pulse delay-2000">
-          <Rocket className="w-8 h-8 text-primary" />
-        </div>
-        <div className="absolute top-1/3 right-8 opacity-15 animate-pulse delay-700">
-          <Sparkles className="w-12 h-12 text-accent" />
-        </div>
-        
-        {/* Geometric Shapes */}
-        <div className="absolute top-16 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-24 right-1/4 w-40 h-40 bg-accent/5 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/5 to-accent/5 rounded-full blur-3xl opacity-50"></div>
-        
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black_40%,transparent_100%)]"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
+    <section id="hero" className="bg-background text-foreground py-20 lg:py-32 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:gap-20 lg:grid-cols-2 items-center">
+          {/* Content Column */}
           <div
-            className={`flex justify-center mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <Badge
-              variant="secondary"
-              className="bg-primary/10 text-primary border-primary/20 px-6 py-3 text-base"
-            >
-              <Sparkles className="w-5 h-5 mr-3" />
-              <span data-editable="badgeText">{config.badgeText}</span>
-            </Badge>
-          </div>
-
-          {/* Headlines */}
-          <div
-            className={`space-y-8 mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-          >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight">
-              <span
-                data-editable="headline"
-                className="bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent"
+            {/* Badge */}
+            <div className="flex justify-center lg:justify-start">
+              <Badge
+                variant="secondary"
+                className="bg-primary/10 text-primary border-primary/20 px-4 py-2"
               >
-                {config.headline}
-              </span>
-            </h1>
+                <Sparkles className="w-4 h-4 mr-2" />
+                <span data-editable="badgeText">{config.badgeText}</span>
+              </Badge>
+            </div>
 
-            <p className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              <span data-editable="subheadline">{config.subheadline}</span>
-            </p>
-          </div>
+            {/* Headlines */}
+            <div className="space-y-6 text-center lg:text-left">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+                <span
+                  data-editable="headline"
+                  className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
+                >
+                  {config.headline}
+                </span>
+              </h1>
 
-          {/* Key Points */}
-          <div
-            className={`flex flex-wrap justify-center gap-6 mb-12 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-          >
-            {config.keyPoints.map((point, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-lg text-muted-foreground">
-                <div className="w-3 h-3 bg-primary rounded-full"></div>
-                <span data-editable={`keyPoints[${idx}]`}>{point}</span>
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                <span data-editable="subheadline">{config.subheadline}</span>
+              </p>
+            </div>
+
+            {/* Key Points */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+              {config.keyPoints.map((point, idx) => (
+                <div key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <span data-editable={`keyPoints[${idx}]`}>{point}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button
+                size="lg"
+                onClick={handlePrimaryClick}
+                data-editable-href="primaryCtaHref"
+                data-href={config.primaryCtaHref}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg font-semibold group"
+              >
+                <span data-editable="primaryCtaText">{config.primaryCtaText}</span>
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleSecondaryClick}
+                data-editable-href="secondaryCtaHref"
+                data-href={config.secondaryCtaHref}
+                className="border-border hover:bg-accent hover:text-accent-foreground px-8 py-6 text-lg font-semibold group"
+              >
+                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                <span data-editable="secondaryCtaText">{config.secondaryCtaText}</span>
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="flex items-center justify-center lg:justify-start gap-4 pt-8">
+              <div className="text-center lg:text-left">
+                <div className="text-3xl font-bold text-primary">{animatedStats}</div>
+                <div className="text-sm text-muted-foreground">
+                  <span data-editable="statsLabel">{config.statsLabel}</span>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
 
-          {/* CTAs */}
+          {/* Image Column */}
           <div
-            className={`flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`relative transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <Button
-              size="lg"
-              onClick={handlePrimaryClick}
-              data-editable-href="primaryCtaHref"
-              data-href={config.primaryCtaHref}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-6 text-xl font-semibold group shadow-2xl hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105"
-            >
-              <span data-editable="primaryCtaText">{config.primaryCtaText}</span>
-              <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
-            </Button>
-
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleSecondaryClick}
-              data-editable-href="secondaryCtaHref"
-              data-href={config.secondaryCtaHref}
-              className="border-2 border-border hover:bg-accent hover:text-accent-foreground px-10 py-6 text-xl font-semibold group backdrop-blur-sm"
-            >
-              <Play className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-              <span data-editable="secondaryCtaText">{config.secondaryCtaText}</span>
-            </Button>
-          </div>
-
-          {/* Hero Image */}
-          <div
-            className={`relative max-w-4xl mx-auto mb-16 transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-          >
-            <Card className="bg-card/80 backdrop-blur-sm border-border/50 shadow-2xl overflow-hidden">
+            <Card className="bg-card border-border shadow-2xl overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative aspect-[16/10] bg-gradient-to-br from-primary/5 to-accent/5">
+                <div className="relative aspect-[4/3] bg-gradient-to-br from-primary/5 to-accent/5">
                   <Image
                     src={config.heroImageUrl}
                     alt={config.heroImageAlt}
@@ -192,42 +165,30 @@ export default function Hero(props: HeroProps) {
                     priority
                   />
 
-                  {/* Floating Elements on Image */}
-                  <div className="absolute top-6 left-6 bg-background/90 backdrop-blur-sm border border-border rounded-lg p-4 shadow-lg">
-                    <div className="flex items-center gap-3">
-                      <Code className="w-5 h-5 text-primary" />
+                  {/* Floating Elements */}
+                  <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <Code className="w-4 h-4 text-primary" />
                       <span className="text-sm font-medium">Next.js</span>
                     </div>
                   </div>
 
-                  <div className="absolute top-6 right-6 bg-background/90 backdrop-blur-sm border border-border rounded-lg p-4 shadow-lg">
-                    <div className="flex items-center gap-3">
-                      <Palette className="w-5 h-5 text-accent" />
+                  <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <Palette className="w-4 h-4 text-accent" />
                       <span className="text-sm font-medium">Visual Editor</span>
                     </div>
                   </div>
 
-                  <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-background/90 backdrop-blur-sm border border-border rounded-lg p-4 shadow-lg">
-                    <div className="flex items-center gap-3">
-                      <Sparkles className="w-5 h-5 text-primary animate-pulse" />
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-background/90 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-primary animate-pulse" />
                       <span className="text-sm font-medium">AI Powered</span>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
-
-          {/* Stats */}
-          <div
-            className={`flex items-center justify-center gap-8 transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-          >
-            <div className="text-center">
-              <div className="text-4xl lg:text-5xl font-bold text-primary mb-2">{animatedStats}</div>
-              <div className="text-lg text-muted-foreground">
-                <span data-editable="statsLabel">{config.statsLabel}</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
